@@ -7,23 +7,22 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] blocks;
     [SerializeField] private GameObject[] yellowCubeChild;
     [SerializeField] private float timeBetweenSpawn = 1.5f;
-    private Block block;
+
+    private GameManager gameManager;
     
     private int index;
     private float maxXPos = 8;
     private float spawnPosX;
 
-    private bool isGameActive = true;
-
     private void Start()
     {
-        block = FindObjectOfType<Block>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         StartCoroutine(BlockSpawn());
     }
 
     IEnumerator BlockSpawn()
     {
-        while(isGameActive)
+        while(gameManager.isGameActive)
         {
             index = Random.Range(0, blocks.Length);
             spawnPosX = Random.Range(-maxXPos, maxXPos);

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Block : MonoBehaviour
 {
     [SerializeField] protected float speed;
+
     protected float maxXPos = 8;
     protected int forward = 1;
     protected int right = 1;

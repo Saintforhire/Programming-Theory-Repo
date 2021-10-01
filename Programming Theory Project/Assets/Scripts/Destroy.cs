@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowCubeChild : Block
+public class Destroy : MonoBehaviour
 {
-    private int score = 10;
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        Move();
-    }
-
-    public override void OnMouseDown()
-    {
-        base.OnMouseDown();
+        Destroy(other.gameObject);
         if (gameManager.isGameActive)
         {
-            gameManager.AddToScore(score);
+            gameManager.LoseScore();
         }
     }
-
 }
